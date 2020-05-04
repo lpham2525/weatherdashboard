@@ -1,0 +1,42 @@
+body {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  background-color: cadetblue;
+}
+
+#dashboard {
+  background-color: teal;
+  color: white;
+  text-align: center;
+}
+
+.myContainer {
+  display: grid;
+  width: 0%;
+  height: 700px;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.shortRow {
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 2;
+}
+
+.rowOne {
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 1;
+  margin: 20px;
+  font-size: large;
+}
+
+.rowTwo {
+  grid-column: 2 / span 1;
+  grid-row: 2 / span 1;
+  margin: 20px;
+  font-size: large;
+}
+
+#save {
+  width: 200px;
+  font-size: medium;
+}
