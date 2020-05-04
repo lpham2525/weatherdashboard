@@ -1,22 +1,23 @@
 //function to search for city when button is clicked
-document.getElementById('searchCity').addEventListener('click', event => {
+document.getElementById('submit').addEventListener('click', event => {
   //prevents page from refreshing when button is clicked
   event.preventDefault()
+  console.log('hi')
 
   //if statement to check if something was typed into input field
   if (document.getElementById('searchCity').value.length > 1) {
     //fetch request
     fetch(`https://api.openweathermap.org/data/2.5/forecast?q=Irvine&appid=d9145c6f207a235bfd97011a950cc17f`)
       .then(r => r.json())
-      .then(city => {
+      .then(data => {
         //console logging the name of the city to see if fetch request is working 
-        console.log(city)
+        console.log(data)
 
         fetch(city.coord.lat)
           .then(r => r.json())
           .then(latitude => {
             //console logging the latitude of the city to see if fetch request is working 
-            console.log(latitude)
+            console.log('latitude')
 
             fetch(city.coord.lon)
               .then(r => r.json())
