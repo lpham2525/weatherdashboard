@@ -50,27 +50,28 @@ document.getElementById('submit').addEventListener('click', event => {
                 //creating a div to display current info for city 
                 let presentDay = Date()
                 let cityCurrent = document.createElement('div')
-                cityCurrent.className = 'card w-75'
-                cityCurrent.style = 'display: inline-block;'
+                cityCurrent.className = 'card text-white bg-warning mb-3 w-75'
+                cityCurrent.style = 'display: inline-block; max-width: 50rem;'
                 cityCurrent.innerHTML = `
-              <div>
+              <div class="card text-white bg-warning mb-3"> 
+              <div class="card-header">
                 <h5>
                   ${data.name}
                   <br>
                   ${presentDay}
                 </h5>
              </div>
-              <div>
-                      <p>
+              <div class="card-body">
+                      <p="card-text">
                          <span><img src=http://openweathermap.org/img/w/${data.weather[0].icon}.png></span >
                       </p>
-                      <p>
-                        Temperature: ${data.main.temp} F
+                      <p ="card-text">
+                        Temperature: ${data.main.temp}\xB0 F
                       </p>
-                      <p>
+                      <p ="card-text">
                         Humidity:  ${data.main.humidity}%
                       </p>
-                      <p>
+                      <p ="card-text">
                         Windspeed: ${data.wind.speed} mph
                       </p>
                       <p id=''uvColor">
@@ -100,7 +101,7 @@ document.getElementById('submit').addEventListener('click', event => {
                   <span><img src=http://openweathermap.org/img/w/${forecast.list[0].weather[0].icon}.png></span >
                 </li>
                 <li>
-                  Temperature: ${forecast.list[0].main.temp}F
+                  Temperature: ${forecast.list[0].main.temp}\xB0 F
                 </li>
                 <li>
                   Humidity: ${forecast.list[0].main.humidity}%
@@ -128,7 +129,7 @@ document.getElementById('submit').addEventListener('click', event => {
                   <span><img src=http://openweathermap.org/img/w/${forecast.list[8].weather[0].icon}.png></span >
                 </li>
                 <li>
-                  Temperature: ${forecast.list[8].main.temp} F
+                  Temperature: ${forecast.list[8].main.temp}\xB0 F
                 </li>
                 <li>
                   Humidity: ${forecast.list[8].main.humidity}%
@@ -156,7 +157,7 @@ document.getElementById('submit').addEventListener('click', event => {
                   <span><img src=http://openweathermap.org/img/w/${forecast.list[16].weather[0].icon}.png></span >
                 </li>
                 <li>
-                  Temperature: ${forecast.list[16].main.temp} F
+                  Temperature: ${forecast.list[16].main.temp}\xB0 F
                 </li>
                 <li>
                 Humidity: ${forecast.list[16].main.humidity}%
@@ -185,7 +186,7 @@ document.getElementById('submit').addEventListener('click', event => {
                   <span><img src=http://openweathermap.org/img/w/${forecast.list[24].weather[0].icon}.png></span >
                 </li>
                 <li>
-                  Temperature: ${forecast.list[24].main.temp} F
+                  Temperature: ${forecast.list[24].main.temp}\xB0 F
                 </li>
                 <li>
                   Humidity: ${forecast.list[24].main.humidity}%
@@ -213,7 +214,7 @@ document.getElementById('submit').addEventListener('click', event => {
                   <span><img src=http://openweathermap.org/img/w/${forecast.list[32].weather[0].icon}.png></span >
                 </li>
                 <li>
-                  Temperature: ${forecast.list[32].main.temp} F
+                  Temperature: ${forecast.list[32].main.temp}\xB0 F
                 </li>
                 <li>
                   Humidity: ${forecast.list[32].main.humidity}%
