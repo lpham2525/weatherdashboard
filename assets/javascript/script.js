@@ -3,8 +3,6 @@ let searchCity;
 document.getElementById('submit').addEventListener('click', event => {
   //prevents page from refreshing when button is clicked
   event.preventDefault()
-  //console logging a string to test if button is working
-  console.log('hi')
   searchCity = document.getElementById('searchCity').value
 
   //if statement to check if something was typed into input field
@@ -246,10 +244,9 @@ document.getElementById('submit').addEventListener('click', event => {
             document.getElementById('searchCity').value = ' '
           })
       })
-
-
   }
 })
+
 document.getElementById('save').addEventListener('click', () => {
   if (searchCity.length > 0) {
     let pastSearches = JSON.parse(localStorage.getItem("pastSearches"))
@@ -261,9 +258,12 @@ document.getElementById('save').addEventListener('click', () => {
     localStorage.setItem('pastSearches', JSON.stringify(pastSearches))
 
     let getSearches = document.createElement('button')
-    getSearches.className = "btn btn-text-info"
+    getSearches.className = 'btn btn-text-info'
     getSearches.style = 'display:block;'
-    getSearches.textContent = `${document.getElementById('searchCity').value}`
+    getSearches.textContent = `${searchCity}`
     document.getElementById('recentSearches').appendChild(getSearches)
   }
 })
+
+
+
