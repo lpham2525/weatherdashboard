@@ -43,3 +43,7 @@ body {
 .inline {
   display: inline;
 }
+
+#recentSearches {
+  text-align: center;
+}

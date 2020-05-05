@@ -28,8 +28,26 @@ document.getElementById('submit').addEventListener('click', event => {
             fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${searchCity}&appid=d9145c6f207a235bfd97011a950cc17f&units=imperial`)
               .then(r => r.json())
               .then(forecast => {
-                //creating a div to display current info for city 
+                //console logging string to check if fetch request worked
                 console.log('forecast')
+
+                // let colorChange = document.getElementById('uvColor')
+                function colorUv() {
+                  if (uvIndex.value <= 2) {
+                    colorChange.style.backgroundColor = "green"
+                  } else if (uvIndex.value <= 5) {
+                    colorChange.style.backgroundColor = "yellow"
+                  } else if (uvIndex.value <= 7) {
+                    colorChange.style.backgroundColor = "orange"
+                  } else if (uvIndex.value <= 10) {
+                    colorChange.style.backgroundColor = "red"
+                  } else {
+                    colorChange.style.backgroundColor = "purple"
+                  }
+                  return ' '
+                }
+
+                //creating a div to display current info for city 
                 let presentDay = Date()
                 let cityCurrent = document.createElement('div')
                 cityCurrent.className = 'card w-75'
@@ -47,19 +65,21 @@ document.getElementById('submit').addEventListener('click', event => {
                          <span><img src=http://openweathermap.org/img/w/${data.weather[0].icon}.png></span >
                       </p>
                       <p>
-                        Temperature: ${data.main.temp}
+                        Temperature: ${data.main.temp} F
                       </p>
                       <p>
-                        Humidity:  ${data.main.humidity}
+                        Humidity:  ${data.main.humidity}%
                       </p>
                       <p>
-                        Windspeed: ${data.wind.speed}
+                        Windspeed: ${data.wind.speed} mph
                       </p>
-                      <p id='' uvIndex">
-                        UV Index: ${ uvIndex.value}
+                      <p id=''uvColor">
+                        UV Index: ${uvIndex.value}
                       </p >
               </div >
             `
+                //calling the function to change the color of the UV Index to correspond to its value
+                // colorUv()
                 //function to clear out currentCity div
                 document.getElementById('currentCity').innerHTML = ' '
                 //function to append the cityCurrent into the currentCity div
@@ -71,19 +91,19 @@ document.getElementById('submit').addEventListener('click', event => {
                 nextDay.innerHTML = `
             <div class="card-header">
             <h5 class="card-title">
-              ${forecast.list[3].dt_txt}
+              ${forecast.list[0].dt_txt}
             </h5>
              </div >
             <div class="card-body">
               <ul class="list-group list-group-flush">
                 <li>
-                  <span><img src=http://openweathermap.org/img/w/${forecast.list[3].weather.icon}.png></span >
+                  <span><img src=http://openweathermap.org/img/w/${forecast.list[0].weather[0].icon}.png></span >
                 </li>
                 <li>
-                  Temperature: ${forecast.list[3].main.temp}
+                  Temperature: ${forecast.list[0].main.temp}F
                 </li>
                 <li>
-                  Humidity: ${forecast.list[3].main.humidity}
+                  Humidity: ${forecast.list[0].main.humidity}%
                 </li>
               </ul>
             </div>
@@ -105,13 +125,13 @@ document.getElementById('submit').addEventListener('click', event => {
             <div class="card-body">
               <ul class="list-group list-group-flush">
                 <li>
-                  <span><img src=http://openweathermap.org/img/w/${forecast.list[11].weather.icon}.png></span >
+                  <span><img src=http://openweathermap.org/img/w/${forecast.list[8].weather[0].icon}.png></span >
                 </li>
                 <li>
-                  Temperature: ${forecast.list[11].main.temp}
+                  Temperature: ${forecast.list[8].main.temp} F
                 </li>
                 <li>
-                  Humidity: ${forecast.list[11].main.humidity}
+                  Humidity: ${forecast.list[8].main.humidity}%
                 </li>
               </ul>
             </div>
@@ -127,19 +147,19 @@ document.getElementById('submit').addEventListener('click', event => {
                 thirdDay.innerHTML = `
             <div class="card-header">
             <h5 class="card-title">
-              ${forecast.list[19].dt_txt}
+              ${forecast.list[16].dt_txt}
             </h5>
              </div >
             <div class="card-body">
               <ul class="list-group list-group-flush">
                 <li>
-                  <span><img src=http://openweathermap.org/img/w/${forecast.list[19].weather.icon}.png></span >
+                  <span><img src=http://openweathermap.org/img/w/${forecast.list[16].weather[0].icon}.png></span >
                 </li>
                 <li>
-                  Temperature: ${forecast.list[19].main.temp}
+                  Temperature: ${forecast.list[16].main.temp} F
                 </li>
                 <li>
-                Humidity: ${forecast.list[19].main.humidity}
+                Humidity: ${forecast.list[16].main.humidity}%
                 </li>
               </ul>
             </div>
@@ -156,19 +176,19 @@ document.getElementById('submit').addEventListener('click', event => {
                 fourthDay.innerHTML = `
             <div class="card-header">
             <h5 class="card-title">
-              ${forecast.list[27].dt_txt}
+              ${forecast.list[24].dt_txt}
             </h5>
              </div >
             <div class="card-body">
               <ul class="list-group list-group-flush">
                 <li>
-                  <span><img src=http://openweathermap.org/img/w/${forecast.list[27].weather.icon}.png></span >
+                  <span><img src=http://openweathermap.org/img/w/${forecast.list[24].weather[0].icon}.png></span >
                 </li>
                 <li>
-                  Temperature: ${forecast.list[27].main.temp}
+                  Temperature: ${forecast.list[24].main.temp} F
                 </li>
                 <li>
-                  Humidity: ${forecast.list[27].main.humidity}
+                  Humidity: ${forecast.list[24].main.humidity}%
                 </li>
               </ul>
             </div>
@@ -184,19 +204,19 @@ document.getElementById('submit').addEventListener('click', event => {
                 fifthDay.innerHTML = `
                 <div class="card-header">
             <h5 class="card-title">
-              ${forecast.list[35].dt_txt}
+              ${forecast.list[32].dt_txt}
             </h5>
              </div >
             <div class="card-body">
               <ul class="list-group list-group-flush">
                 <li>
-                  <span><img src=http://openweathermap.org/img/w/${forecast.list[35].weather.icon}.png></span >
+                  <span><img src=http://openweathermap.org/img/w/${forecast.list[32].weather[0].icon}.png></span >
                 </li>
                 <li>
-                  Temperature: ${forecast.list[35].main.temp}
+                  Temperature: ${forecast.list[32].main.temp} F
                 </li>
                 <li>
-                  Humidity: ${forecast.list[35].main.humidity}
+                  Humidity: ${forecast.list[32].main.humidity}%
                 </li>
               </ul>
             </div>
