@@ -1,6 +1,5 @@
 body {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  background-color: cadetblue;
 }
 
 #dashboard {
@@ -39,4 +38,8 @@ body {
 #save {
   width: 200px;
   font-size: medium;
+}
+
+.inline {
+  display: inline;
 }
