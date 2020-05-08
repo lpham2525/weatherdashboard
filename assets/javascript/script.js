@@ -23,27 +23,29 @@ document.getElementById('submit').addEventListener('click', event => {
           .then(uvIndex => {
             console.log('uvIndex')
 
+            let backgroundColor = ' '
+            if (uvIndex.value <= 2) {
+              backgroundColor = "green"
+              console.log("green")
+            } else if (uvIndex.value <= 5) {
+              backgroundColor = "yellow"
+              console.log("yellow")
+            } else if (uvIndex.value <= 7) {
+              backgroundColor = "orange"
+              console.log("orange")
+            } else if (uvIndex.value <= 10) {
+              backgroundColor = "red"
+              console.log("red")
+            } else {
+              backgroundColor = "purple"
+              console.log("purple")
+            }
+
             fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${searchCity}&appid=d9145c6f207a235bfd97011a950cc17f&units=imperial`)
               .then(r => r.json())
               .then(forecast => {
                 //console logging string to check if fetch request worked
                 console.log('forecast')
-
-                // let colorChange = document.getElementById('uvColor')
-                function colorUv() {
-                  if (uvIndex.value <= 2) {
-                    colorChange.style.backgroundColor = "green"
-                  } else if (uvIndex.value <= 5) {
-                    colorChange.style.backgroundColor = "yellow"
-                  } else if (uvIndex.value <= 7) {
-                    colorChange.style.backgroundColor = "orange"
-                  } else if (uvIndex.value <= 10) {
-                    colorChange.style.backgroundColor = "red"
-                  } else {
-                    colorChange.style.backgroundColor = "purple"
-                  }
-                  return ' '
-                }
 
                 //creating a div to display current info for city 
                 let presentDay = Date()
@@ -51,9 +53,9 @@ document.getElementById('submit').addEventListener('click', event => {
                 cityCurrent.className = 'card text-white bg-warning mb-3 w-75'
                 cityCurrent.style = 'display: inline-block; max-width: 50rem;'
                 cityCurrent.innerHTML = `
-              <div class="card text-white bg-warning mb-3"> 
+              <div> 
               <div class="card-header">
-                <h5>
+                <h5 class="card-title">
                   ${data.name}
                   <br>
                   ${presentDay}
@@ -61,7 +63,8 @@ document.getElementById('submit').addEventListener('click', event => {
              </div>
               <div class="card-body">
                       <p="card-text">
-                         <span><img src=http://openweathermap.org/img/w/${data.weather[0].icon}.png></span >
+                         <span><img src=http://openweathermap.org/img/w/${data.weather[0].icon}.png>
+                         </span>
                       </p>
                       <p ="card-text">
                         Temperature: ${data.main.temp}\xB0 F
@@ -72,13 +75,12 @@ document.getElementById('submit').addEventListener('click', event => {
                       <p ="card-text">
                         Windspeed: ${data.wind.speed} mph
                       </p>
-                      <p id=''uvColor">
+                      <p id=''uvColor" style="background-color: ${backgroundColor}">
                         UV Index: ${uvIndex.value}
-                      </p >
+                      </p>
               </div >
             `
-                //calling the function to change the color of the UV Index to correspond to its value
-                // colorUv()
+
                 //function to clear out currentCity div
                 document.getElementById('currentCity').innerHTML = ' '
                 //function to append the cityCurrent into the currentCity div
@@ -96,7 +98,7 @@ document.getElementById('submit').addEventListener('click', event => {
             <div class="card-body">
               <ul class="list-group list-group-flush">
                 <li>
-                  <span><img src=http://openweathermap.org/img/w/${forecast.list[0].weather[0].icon}.png></span >
+                  <span><img src=http://openweathermap.org/img/w/${forecast.list[0].weather[0].icon}.png></span>
                 </li>
                 <li>
                   Temperature: ${forecast.list[0].main.temp}\xB0 F
@@ -120,11 +122,11 @@ document.getElementById('submit').addEventListener('click', event => {
             <h5 class="card-title">
               ${forecast.list[11].dt_txt}
             </h5>
-             </div >
+             </div>
             <div class="card-body">
               <ul class="list-group list-group-flush">
                 <li>
-                  <span><img src=http://openweathermap.org/img/w/${forecast.list[8].weather[0].icon}.png></span >
+                  <span><img src=http://openweathermap.org/img/w/${forecast.list[8].weather[0].icon}.png></span>
                 </li>
                 <li>
                   Temperature: ${forecast.list[8].main.temp}\xB0 F
@@ -148,11 +150,11 @@ document.getElementById('submit').addEventListener('click', event => {
             <h5 class="card-title">
               ${forecast.list[16].dt_txt}
             </h5>
-             </div >
+             </div>
             <div class="card-body">
               <ul class="list-group list-group-flush">
                 <li>
-                  <span><img src=http://openweathermap.org/img/w/${forecast.list[16].weather[0].icon}.png></span >
+                  <span><img src=http://openweathermap.org/img/w/${forecast.list[16].weather[0].icon}.png></span>
                 </li>
                 <li>
                   Temperature: ${forecast.list[16].main.temp}\xB0 F
@@ -177,11 +179,11 @@ document.getElementById('submit').addEventListener('click', event => {
             <h5 class="card-title">
               ${forecast.list[24].dt_txt}
             </h5>
-             </div >
+             </div>
             <div class="card-body">
               <ul class="list-group list-group-flush">
                 <li>
-                  <span><img src=http://openweathermap.org/img/w/${forecast.list[24].weather[0].icon}.png></span >
+                  <span><img src=http://openweathermap.org/img/w/${forecast.list[24].weather[0].icon}.png></span>
                 </li>
                 <li>
                   Temperature: ${forecast.list[24].main.temp}\xB0 F
@@ -205,11 +207,11 @@ document.getElementById('submit').addEventListener('click', event => {
             <h5 class="card-title">
               ${forecast.list[32].dt_txt}
             </h5>
-             </div >
+             </div>
             <div class="card-body">
               <ul class="list-group list-group-flush">
                 <li>
-                  <span><img src=http://openweathermap.org/img/w/${forecast.list[32].weather[0].icon}.png></span >
+                  <span><img src=http://openweathermap.org/img/w/${forecast.list[32].weather[0].icon}.png></span>
                 </li>
                 <li>
                   Temperature: ${forecast.list[32].main.temp}\xB0 F
@@ -247,6 +249,9 @@ document.getElementById('submit').addEventListener('click', event => {
   }
 })
 
+//calling the function to change the color of the UV Index to correspond to its value
+
+
 document.getElementById('save').addEventListener('click', () => {
   if (searchCity.length > 0) {
     let pastSearches = JSON.parse(localStorage.getItem("pastSearches"))
@@ -283,35 +288,37 @@ document.getElementById('save').addEventListener('click', () => {
               .then(uvIndex => {
                 console.log('uvIndex')
 
+                let backgroundColor = ' '
+                if (uvIndex.value <= 2) {
+                  backgroundColor = "green"
+                  console.log("green")
+                } else if (uvIndex.value <= 5) {
+                  backgroundColor = "yellow"
+                  console.log("yellow")
+                } else if (uvIndex.value <= 7) {
+                  backgroundColor = "orange"
+                  console.log("orange")
+                } else if (uvIndex.value <= 10) {
+                  backgroundColor = "red"
+                  console.log("red")
+                } else {
+                  backgroundColor = "purple"
+                  console.log("purple")
+                }
+
                 fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${searchCity}&appid=d9145c6f207a235bfd97011a950cc17f&units=imperial`)
                   .then(r => r.json())
                   .then(forecast => {
                     //console logging string to check if fetch request worked
                     console.log('forecast')
 
-                    // let colorChange = document.getElementById('uvColor')
-                    function colorUv() {
-                      if (uvIndex.value <= 2) {
-                        colorChange.style.backgroundColor = "green"
-                      } else if (uvIndex.value <= 5) {
-                        colorChange.style.backgroundColor = "yellow"
-                      } else if (uvIndex.value <= 7) {
-                        colorChange.style.backgroundColor = "orange"
-                      } else if (uvIndex.value <= 10) {
-                        colorChange.style.backgroundColor = "red"
-                      } else {
-                        colorChange.style.backgroundColor = "purple"
-                      }
-                      return ' '
-                    }
-
                     //creating a div to display current info for city 
                     let presentDay = Date()
                     let cityCurrent = document.createElement('div')
-                    cityCurrent.className = 'card text-white bg-warning mb-3 w-75'
+                    cityCurrent.className = 'card text-white bg-warning mb-3'
                     cityCurrent.style = 'display: inline-block; max-width: 50rem;'
                     cityCurrent.innerHTML = `
-              <div class="card text-white bg-warning mb-3"> 
+              <div> 
               <div class="card-header">
                 <h5>
                   ${data.name}
@@ -321,7 +328,7 @@ document.getElementById('save').addEventListener('click', () => {
              </div>
               <div class="card-body">
                       <p="card-text">
-                         <span><img src=http://openweathermap.org/img/w/${data.weather[0].icon}.png></span >
+                         <span><img src=http://openweathermap.org/img/w/${data.weather[0].icon}.png></span>
                       </p>
                       <p ="card-text">
                         Temperature: ${data.main.temp}\xB0 F
@@ -332,10 +339,10 @@ document.getElementById('save').addEventListener('click', () => {
                       <p ="card-text">
                         Windspeed: ${data.wind.speed} mph
                       </p>
-                      <p id=''uvColor">
+                      <p id=''uvColor" style="background-color: ${backgroundColor}">
                         UV Index: ${uvIndex.value}
-                      </p >
-              </div >
+                      </p>
+              </div>
             `
                     //calling the function to change the color of the UV Index to correspond to its value
                     // colorUv()
@@ -352,11 +359,11 @@ document.getElementById('save').addEventListener('click', () => {
             <h5 class="card-title">
               ${forecast.list[0].dt_txt}
             </h5>
-             </div >
+             </div>
             <div class="card-body">
               <ul class="list-group list-group-flush">
                 <li>
-                  <span><img src=http://openweathermap.org/img/w/${forecast.list[0].weather[0].icon}.png></span >
+                  <span><img src=http://openweathermap.org/img/w/${forecast.list[0].weather[0].icon}.png></span>
                 </li>
                 <li>
                   Temperature: ${forecast.list[0].main.temp}\xB0 F
@@ -380,11 +387,11 @@ document.getElementById('save').addEventListener('click', () => {
             <h5 class="card-title">
               ${forecast.list[11].dt_txt}
             </h5>
-             </div >
+             </div>
             <div class="card-body">
               <ul class="list-group list-group-flush">
                 <li>
-                  <span><img src=http://openweathermap.org/img/w/${forecast.list[8].weather[0].icon}.png></span >
+                  <span><img src=http://openweathermap.org/img/w/${forecast.list[8].weather[0].icon}.png></span>
                 </li>
                 <li>
                   Temperature: ${forecast.list[8].main.temp}\xB0 F
@@ -408,11 +415,11 @@ document.getElementById('save').addEventListener('click', () => {
             <h5 class="card-title">
               ${forecast.list[16].dt_txt}
             </h5>
-             </div >
+             </div>
             <div class="card-body">
               <ul class="list-group list-group-flush">
                 <li>
-                  <span><img src=http://openweathermap.org/img/w/${forecast.list[16].weather[0].icon}.png></span >
+                  <span><img src=http://openweathermap.org/img/w/${forecast.list[16].weather[0].icon}.png></span>
                 </li>
                 <li>
                   Temperature: ${forecast.list[16].main.temp}\xB0 F
@@ -437,11 +444,11 @@ document.getElementById('save').addEventListener('click', () => {
             <h5 class="card-title">
               ${forecast.list[24].dt_txt}
             </h5>
-             </div >
+             </div>
             <div class="card-body">
               <ul class="list-group list-group-flush">
                 <li>
-                  <span><img src=http://openweathermap.org/img/w/${forecast.list[24].weather[0].icon}.png></span >
+                  <span><img src=http://openweathermap.org/img/w/${forecast.list[24].weather[0].icon}.png></span>
                 </li>
                 <li>
                   Temperature: ${forecast.list[24].main.temp}\xB0 F
@@ -465,11 +472,11 @@ document.getElementById('save').addEventListener('click', () => {
             <h5 class="card-title">
               ${forecast.list[32].dt_txt}
             </h5>
-             </div >
+             </div>
             <div class="card-body">
               <ul class="list-group list-group-flush">
                 <li>
-                  <span><img src=http://openweathermap.org/img/w/${forecast.list[32].weather[0].icon}.png></span >
+                  <span><img src=http://openweathermap.org/img/w/${forecast.list[32].weather[0].icon}.png></span>
                 </li>
                 <li>
                   Temperature: ${forecast.list[32].main.temp}\xB0 F
@@ -480,7 +487,6 @@ document.getElementById('save').addEventListener('click', () => {
               </ul>
             </div>
             `
-
                     //function to clear out dayFive div
                     document.getElementById('dayFive').innerHTML = ' '
                     // function to append the fifthDay forecast into the div for dayFive
