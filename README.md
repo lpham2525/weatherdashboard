@@ -2,6 +2,9 @@
 
 Developers are often tasked with retrieving data from another application's API and using it in the context of their own. Third-party APIs allow developers to access their data and functionality by making requests with specific parameters to a URL. This weather dashboard was built to retrieve data from the OpenWeather API to display weather forecasts for the current day as well as a 5-day forecast. It runs in the browser and feature dynamically updated HTML and CSS and uses local storage to store any persistent data.
 
+The following image demonstrates the application functionality:
+![weather dashboard demo](./assets/weather.png)
+
 ## User Story
 
 ```
@@ -10,7 +13,7 @@ I WANT to see the weather outlook for multiple cities
 SO THAT I can plan a trip accordingly
 ```
 
-## Acceptance Criteria
+## Criteria
 
 ```
 GIVEN a weather dashboard with form inputs
@@ -25,7 +28,3 @@ THEN I am presented with a 5-day forecast that displays the date, an icon repres
 WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city
 ```
-
-The following image demonstrates the application functionality:
-
-![weather dashboard demo](./assets/weather.png)
