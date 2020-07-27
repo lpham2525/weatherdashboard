@@ -4,7 +4,8 @@ Developers are often tasked with retrieving data from another application's API 
 
 The following video demonstrates the overall look of the application:
 
-![weather dashboard demo] (./assets/weather.png?raw=true "Weather Dashboard")
+![Weather Dashboard Screenshot](./assets/weather.png?raw=true "Weather Dashboard")
+--------------------------------------------------------
 
 ## User Story
 
