@@ -2,7 +2,8 @@
 
 Developers are often tasked with retrieving data from another application's API and using it in the context of their own. Third-party APIs allow developers to access their data and functionality by making requests with specific parameters to a URL. This weather dashboard was built to retrieve data from the OpenWeather API to display weather forecasts for the current day as well as a 5-day forecast. It runs in the browser and feature dynamically updated HTML and CSS and uses local storage to store any persistent data.
 
-The following image demonstrates the application functionality:
+The following image demonstrates the overall look of the application:
+
 ![weather dashboard demo](./assets/weather.png)
 
 ## User Story
