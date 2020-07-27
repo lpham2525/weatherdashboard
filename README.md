@@ -4,7 +4,7 @@ Developers are often tasked with retrieving data from another application's API 
 
 The following video demonstrates the application functionality:
 
-![weather dashboard demo] (https://drive.google.com/file/d/1Hl0fm8dzUuenORdJLXJp0CsOOTRJdFpj/view)
+![weather dashboard demo] (./assets/weather.gif)
 
 ## User Story
 
