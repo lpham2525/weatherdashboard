@@ -4,7 +4,7 @@ Developers are often tasked with retrieving data from another application's API 
 
 The following video demonstrates the functionality of the application:
 
-#Demo: ![weather.gif](weather.gif)
+#Demo: ![weather.gif](./assets/weather.gif)
 --------------------------------------------------------
 
 ## User Story
