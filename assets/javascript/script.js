@@ -1,21 +1,21 @@
-let searchCity;
-//function to search for city when button is clicked
+let searchCity
+// function to search for city when button is clicked
 document.getElementById('submit').addEventListener('click', event => {
-  //prevents page from refreshing when button is clicked
+  // prevents page from refreshing when button is clicked
   event.preventDefault()
   searchCity = document.getElementById('searchCity').value
 
-  //if statement to check if something was typed into input field
+  // if statement to check if something was typed into input field
   if (document.getElementById('searchCity').value.length > 1) {
-    //fetch request
+    // fetch request
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&appid=d9145c6f207a235bfd97011a950cc17f&units=imperial`)
       .then(r => r.json())
       .then(data => {
-        //console logging the name of the city to see if fetch request is working 
+        // console logging the name of the city to see if fetch request is working
         console.log(data)
 
-        let latitude = data.coord.lat
-        let longitude = data.coord.lon
+        const latitude = data.coord.lat
+        const longitude = data.coord.lon
         console.log(latitude, longitude)
 
         fetch(`https://api.openweathermap.org/data/2.5/uvi?appid=d9145c6f207a235bfd97011a950cc17f&lat=${data.coord.lat}&lon=${data.coord.lon}`)
@@ -25,31 +25,31 @@ document.getElementById('submit').addEventListener('click', event => {
 
             let backgroundColor = ' '
             if (uvIndex.value <= 2) {
-              backgroundColor = "green"
-              console.log("green")
+              backgroundColor = 'green'
+              console.log('green')
             } else if (uvIndex.value <= 5) {
-              backgroundColor = "yellow"
-              console.log("yellow")
+              backgroundColor = 'yellow'
+              console.log('yellow')
             } else if (uvIndex.value <= 7) {
-              backgroundColor = "orange"
-              console.log("orange")
+              backgroundColor = 'orange'
+              console.log('orange')
             } else if (uvIndex.value <= 10) {
-              backgroundColor = "red"
-              console.log("red")
+              backgroundColor = 'red'
+              console.log('red')
             } else {
-              backgroundColor = "purple"
-              console.log("purple")
+              backgroundColor = 'purple'
+              console.log('purple')
             }
 
             fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${searchCity}&appid=d9145c6f207a235bfd97011a950cc17f&units=imperial`)
               .then(r => r.json())
               .then(forecast => {
-                //console logging string to check if fetch request worked
+                // console logging string to check if fetch request worked
                 console.log('forecast')
 
-                //creating a div to display current info for city 
-                let presentDay = Date()
-                let cityCurrent = document.createElement('div')
+                // creating a div to display current info for city
+                const presentDay = Date()
+                const cityCurrent = document.createElement('div')
                 cityCurrent.className = 'card text-white bg-warning mb-3 w-75'
                 cityCurrent.style = 'display: inline-block; max-width: 50rem;'
                 cityCurrent.innerHTML = `
@@ -60,33 +60,33 @@ document.getElementById('submit').addEventListener('click', event => {
                   <br>
                   ${presentDay}
                 </h5>
-             </div>
+            </div>
               <div class="card-body">
-                      <p="card-text">
-                         <span><img src=http://openweathermap.org/img/w/${data.weather[0].icon}.png>
-                         </span>
-                      </p>
-                      <p ="card-text">
-                        Temperature: ${data.main.temp}\xB0 F
-                      </p>
-                      <p ="card-text">
-                        Humidity:  ${data.main.humidity}%
-                      </p>
-                      <p ="card-text">
-                        Windspeed: ${data.wind.speed} mph
-                      </p>
-                      <p id=''uvColor" style="background-color: ${backgroundColor}">
-                        UV Index: ${uvIndex.value}
-                      </p>
+                <p="card-text">
+                  <span><img src=http://openweathermap.org/img/w/${data.weather[0].icon}.png>
+                  </span>
+                </p>
+                <p ="card-text">
+                  Temperature: ${data.main.temp}\xB0 F
+                </p>
+                <p ="card-text">
+                  Humidity:  ${data.main.humidity}%
+                </p>
+                <p ="card-text">
+                  Windspeed: ${data.wind.speed} mph
+                </p>
+                <p id=''uvColor" style="background-color: ${backgroundColor}">
+                  UV Index: ${uvIndex.value}
+                </p>
               </div >
             `
-
-                //function to clear out currentCity div
+                document.getElementById('save').style.display = 'inline-block'
+                // function to clear out currentCity div
                 document.getElementById('currentCity').innerHTML = ' '
-                //function to append the cityCurrent into the currentCity div
+                // function to append the cityCurrent into the currentCity div
                 document.getElementById('currentCity').append(cityCurrent)
 
-                let nextDay = document.createElement('div')
+                const nextDay = document.createElement('div')
                 nextDay.className = 'card text-white bg-primary mb-3'
                 nextDay.style = style = 'max-width: 18rem; display: inline-block;'
                 nextDay.innerHTML = `
@@ -94,7 +94,7 @@ document.getElementById('submit').addEventListener('click', event => {
             <h5 class="card-title">
               ${forecast.list[0].dt_txt}
             </h5>
-             </div >
+            </div >
             <div class="card-body">
               <ul class="list-group list-group-flush">
                 <li>
@@ -109,12 +109,12 @@ document.getElementById('submit').addEventListener('click', event => {
               </ul>
             </div>
             `
-                //function to clear out dayOne div
+                // function to clear out dayOne div
                 document.getElementById('dayOne').innerHTML = ' '
                 // function to append the nextDay into the dayOne div
                 document.getElementById('dayOne').append(nextDay)
 
-                let secondDay = document.createElement('div')
+                const secondDay = document.createElement('div')
                 secondDay.className = 'card text-white bg-primary mb-3'
                 secondDay.style = style = 'max-width: 18rem; display: inline-block;'
                 secondDay.innerHTML = `
@@ -122,7 +122,7 @@ document.getElementById('submit').addEventListener('click', event => {
             <h5 class="card-title">
               ${forecast.list[11].dt_txt}
             </h5>
-             </div>
+            </div>
             <div class="card-body">
               <ul class="list-group list-group-flush">
                 <li>
@@ -137,12 +137,12 @@ document.getElementById('submit').addEventListener('click', event => {
               </ul>
             </div>
             `
-                //function to clear out dayTwo div
+                // function to clear out dayTwo div
                 document.getElementById('dayTwo').innerHTML = ' '
                 // function to append the secondDay forecast into the dayTwo div
                 document.getElementById('dayTwo').append(secondDay)
 
-                let thirdDay = document.createElement('div')
+                const thirdDay = document.createElement('div')
                 thirdDay.className = 'card text-white bg-primary mb-3'
                 thirdDay.style = style = 'max-width: 18rem; display: inline-block;'
                 thirdDay.innerHTML = `
@@ -166,12 +166,12 @@ document.getElementById('submit').addEventListener('click', event => {
             </div>
             `
 
-                //function to clear out dayThree div
+                // function to clear out dayThree div
                 document.getElementById('dayThree').innerHTML = ' '
                 // function to append the thirdDay forecast into the dayThree div
                 document.getElementById('dayThree').append(thirdDay)
 
-                let fourthDay = document.createElement('div')
+                const fourthDay = document.createElement('div')
                 fourthDay.className = 'card text-white bg-primary mb-3'
                 fourthDay.style = style = 'max-width: 18rem; display: inline-block;'
                 fourthDay.innerHTML = `
@@ -194,12 +194,12 @@ document.getElementById('submit').addEventListener('click', event => {
               </ul>
             </div>
             `
-                //function to clear out dayFour div
+                // function to clear out dayFour div
                 document.getElementById('dayFour').innerHTML = ' '
                 // function to append the fourthDay forecast into the dayFour div
                 document.getElementById('dayFour').append(fourthDay)
 
-                let fifthDay = document.createElement('div')
+                const fifthDay = document.createElement('div')
                 fifthDay.className = 'card text-white bg-primary mb-3'
                 fifthDay.style = style = 'max-width: 50rem; display: inline-block;'
                 fifthDay.innerHTML = `
@@ -223,15 +223,14 @@ document.getElementById('submit').addEventListener('click', event => {
             </div>
             `
 
-                //function to clear out dayFive div
+                // function to clear out dayFive div
                 document.getElementById('dayFive').innerHTML = ' '
                 // function to append the fifthDay forecast into the div for dayFive
                 document.getElementById('dayFive').append(fifthDay)
 
-                //function to clear the input value for city in the city search bar
+                // function to clear the input value for city in the city search bar
                 document.getElementById('searchCity').value = ' '
               })
-
           })
           .catch(e => {
             console.log(e)
@@ -249,12 +248,11 @@ document.getElementById('submit').addEventListener('click', event => {
   }
 })
 
-//calling the function to change the color of the UV Index to correspond to its value
-
+// calling the function to change the color of the UV Index to correspond to its value
 
 document.getElementById('save').addEventListener('click', () => {
   if (searchCity.length > 0) {
-    let pastSearches = JSON.parse(localStorage.getItem("pastSearches"))
+    let pastSearches = JSON.parse(localStorage.getItem('pastSearches'))
     if (pastSearches) {
       pastSearches.push(searchCity)
     } else {
@@ -262,25 +260,24 @@ document.getElementById('save').addEventListener('click', () => {
     }
     localStorage.setItem('pastSearches', JSON.stringify(pastSearches))
 
-    let getSearches = document.createElement('button')
+    const getSearches = document.createElement('button')
     getSearches.className = 'btn btn-text-info'
     getSearches.style = 'display:block;'
     getSearches.textContent = `${searchCity}`
     document.getElementById('recentSearches').appendChild(getSearches)
 
-
     document.addEventListener('click', (event) => {
       if (event.target.className === 'btn btn-text-info') {
-        let retrieveCity = event.target.textContent
-        //fetch request
+        const retrieveCity = event.target.textContent
+        // fetch request
         fetch(`https://api.openweathermap.org/data/2.5/weather?q=${retrieveCity}&appid=d9145c6f207a235bfd97011a950cc17f&units=imperial`)
           .then(r => r.json())
           .then(data => {
-            //console logging the name of the city to see if fetch request is working 
+            // console logging the name of the city to see if fetch request is working
             console.log(data)
 
-            let latitude = data.coord.lat
-            let longitude = data.coord.lon
+            const latitude = data.coord.lat
+            const longitude = data.coord.lon
             console.log(latitude, longitude)
 
             fetch(`https://api.openweathermap.org/data/2.5/uvi?appid=d9145c6f207a235bfd97011a950cc17f&lat=${data.coord.lat}&lon=${data.coord.lon}`)
@@ -290,31 +287,31 @@ document.getElementById('save').addEventListener('click', () => {
 
                 let backgroundColor = ' '
                 if (uvIndex.value <= 2) {
-                  backgroundColor = "green"
-                  console.log("green")
+                  backgroundColor = 'green'
+                  console.log('green')
                 } else if (uvIndex.value <= 5) {
-                  backgroundColor = "yellow"
-                  console.log("yellow")
+                  backgroundColor = 'yellow'
+                  console.log('yellow')
                 } else if (uvIndex.value <= 7) {
-                  backgroundColor = "orange"
-                  console.log("orange")
+                  backgroundColor = 'orange'
+                  console.log('orange')
                 } else if (uvIndex.value <= 10) {
-                  backgroundColor = "red"
-                  console.log("red")
+                  backgroundColor = 'red'
+                  console.log('red')
                 } else {
-                  backgroundColor = "purple"
-                  console.log("purple")
+                  backgroundColor = 'purple'
+                  console.log('purple')
                 }
 
                 fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${searchCity}&appid=d9145c6f207a235bfd97011a950cc17f&units=imperial`)
                   .then(r => r.json())
                   .then(forecast => {
-                    //console logging string to check if fetch request worked
+                    // console logging string to check if fetch request worked
                     console.log('forecast')
 
-                    //creating a div to display current info for city 
-                    let presentDay = Date()
-                    let cityCurrent = document.createElement('div')
+                    // creating a div to display current info for city
+                    const presentDay = Date()
+                    const cityCurrent = document.createElement('div')
                     cityCurrent.className = 'card text-white bg-warning mb-3'
                     cityCurrent.style = 'display: inline-block; max-width: 50rem;'
                     cityCurrent.innerHTML = `
@@ -344,14 +341,14 @@ document.getElementById('save').addEventListener('click', () => {
                       </p>
               </div>
             `
-                    //calling the function to change the color of the UV Index to correspond to its value
+                    // calling the function to change the color of the UV Index to correspond to its value
                     // colorUv()
-                    //function to clear out currentCity div
+                    // function to clear out currentCity div
                     document.getElementById('currentCity').innerHTML = ' '
-                    //function to append the cityCurrent into the currentCity div
+                    // function to append the cityCurrent into the currentCity div
                     document.getElementById('currentCity').append(cityCurrent)
 
-                    let nextDay = document.createElement('div')
+                    const nextDay = document.createElement('div')
                     nextDay.className = 'card text-white bg-primary mb-3'
                     nextDay.style = style = 'max-width: 18rem; display: inline-block;'
                     nextDay.innerHTML = `
@@ -374,12 +371,12 @@ document.getElementById('save').addEventListener('click', () => {
               </ul>
             </div>
             `
-                    //function to clear out dayOne div
+                    // function to clear out dayOne div
                     document.getElementById('dayOne').innerHTML = ' '
                     // function to append the nextDay into the dayOne div
                     document.getElementById('dayOne').append(nextDay)
 
-                    let secondDay = document.createElement('div')
+                    const secondDay = document.createElement('div')
                     secondDay.className = 'card text-white bg-primary mb-3'
                     secondDay.style = style = 'max-width: 18rem; display: inline-block;'
                     secondDay.innerHTML = `
@@ -402,12 +399,12 @@ document.getElementById('save').addEventListener('click', () => {
               </ul>
             </div>
             `
-                    //function to clear out dayTwo div
+                    // function to clear out dayTwo div
                     document.getElementById('dayTwo').innerHTML = ' '
                     // function to append the secondDay forecast into the dayTwo div
                     document.getElementById('dayTwo').append(secondDay)
 
-                    let thirdDay = document.createElement('div')
+                    const thirdDay = document.createElement('div')
                     thirdDay.className = 'card text-white bg-primary mb-3'
                     thirdDay.style = style = 'max-width: 18rem; display: inline-block;'
                     thirdDay.innerHTML = `
@@ -431,12 +428,12 @@ document.getElementById('save').addEventListener('click', () => {
             </div>
             `
 
-                    //function to clear out dayThree div
+                    // function to clear out dayThree div
                     document.getElementById('dayThree').innerHTML = ' '
                     // function to append the thirdDay forecast into the dayThree div
                     document.getElementById('dayThree').append(thirdDay)
 
-                    let fourthDay = document.createElement('div')
+                    const fourthDay = document.createElement('div')
                     fourthDay.className = 'card text-white bg-primary mb-3'
                     fourthDay.style = style = 'max-width: 18rem; display: inline-block;'
                     fourthDay.innerHTML = `
@@ -459,12 +456,12 @@ document.getElementById('save').addEventListener('click', () => {
               </ul>
             </div>
             `
-                    //function to clear out dayFour div
+                    // function to clear out dayFour div
                     document.getElementById('dayFour').innerHTML = ' '
                     // function to append the fourthDay forecast into the dayFour div
                     document.getElementById('dayFour').append(fourthDay)
 
-                    let fifthDay = document.createElement('div')
+                    const fifthDay = document.createElement('div')
                     fifthDay.className = 'card text-white bg-primary mb-3'
                     fifthDay.style = style = 'max-width: 50rem; display: inline-block;'
                     fifthDay.innerHTML = `
@@ -487,15 +484,14 @@ document.getElementById('save').addEventListener('click', () => {
               </ul>
             </div>
             `
-                    //function to clear out dayFive div
+                    // function to clear out dayFive div
                     document.getElementById('dayFive').innerHTML = ' '
                     // function to append the fifthDay forecast into the div for dayFive
                     document.getElementById('dayFive').append(fifthDay)
 
-                    //function to clear the input value for city in the city search bar
+                    // function to clear the input value for city in the city search bar
                     document.getElementById('searchCity').value = ' '
                   })
-
               })
               .catch(e => {
                 console.log(e)
@@ -510,7 +506,6 @@ document.getElementById('save').addEventListener('click', () => {
                 document.getElementById('searchCity').value = ' '
               })
           })
-
       }
     })
   }
